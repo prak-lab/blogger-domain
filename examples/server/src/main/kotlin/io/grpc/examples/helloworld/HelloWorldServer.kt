@@ -50,8 +50,13 @@ class HelloWorldServer(private val port: Int) {
                 .newBuilder()
                 .setMessage("Hello ${request.name}")
                 .build()
+
+        override suspend fun sayHelloAgain(request: HelloRequest) = HelloReply
+                .newBuilder()
+                .setMessage("Hello again ${request.name}")
+                .build()
+        }
     }
-}
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 50051
